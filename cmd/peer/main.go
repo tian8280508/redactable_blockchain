@@ -7,6 +7,7 @@ SPDX-License-Identifier: Apache-2.0
 package main
 
 import (
+	"github.com/hyperledger/fabric/internal/peer/redact"
 	_ "net/http/pprof"
 	"os"
 	"strings"
@@ -48,6 +49,7 @@ func main() {
 	mainCmd.AddCommand(chaincode.Cmd(nil, cryptoProvider))
 	mainCmd.AddCommand(channel.Cmd(nil))
 	mainCmd.AddCommand(lifecycle.Cmd(cryptoProvider))
+	mainCmd.AddCommand(redact.Cmd())
 
 	// On failure Cobra prints the usage message and error string, so we only
 	// need to exit with a non-0 status
